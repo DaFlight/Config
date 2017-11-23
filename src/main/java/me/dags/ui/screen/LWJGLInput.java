@@ -3,8 +3,6 @@ package me.dags.ui.screen;
 import me.dags.ui.platform.Input;
 import org.lwjgl.input.Keyboard;
 
-import java.awt.event.KeyEvent;
-
 /**
  * @author dags <dags@dags.me>
  */
@@ -52,7 +50,7 @@ public class LWJGLInput implements Input {
 
     @Override
     public boolean isUndefined(char c) {
-        return false;
+        return c == Keyboard.CHAR_NONE;
     }
 
     @Override
@@ -62,11 +60,16 @@ public class LWJGLInput implements Input {
 
     @Override
     public int keyCode(char c) {
-        return KeyEvent.getExtendedKeyCodeForChar(c);
+        return 0;
     }
 
     @Override
     public int shiftCode() {
         return Keyboard.KEY_LSHIFT;
+    }
+
+    @Override
+    public int mouseOffset() {
+        return 1;
     }
 }
