@@ -143,7 +143,6 @@ public class ConfigScreen<T> extends GuiScreen implements RenderContext {
 
     @Override
     public int stringWidth(String s) {
-        onGuiClosed();
         return fontRenderer.getStringWidth(s);
     }
 
