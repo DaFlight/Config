@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 
 group 'me.dags'
-version '0.1-BETA'
+version '0.1-BETA-1'
 targetCompatibility = sourceCompatibility = "1.8"
 
 minecraft {
@@ -34,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    shade ('com.github.dags-:cfg-ui:0.1-SNAPSHOT') {
+    shade ('com.github.dags-:cfg-ui:0.2-SNAPSHOT') {
         transitive = false
     }
 }
