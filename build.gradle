@@ -1,0 +1,60 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name 'forge'
+            url 'http://files.minecraftforge.net/maven'
+        }
+        maven {
+            name 'm2'
+            url 'https://plugins.gradle.org/m2'
+        }
+        maven {
+            name 'sponge'
+            url 'https://repo.spongepowered.org/maven'
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.tweaker-client'
+
+group 'me.dags'
+version '0.3-SNAPSHOT'
+targetCompatibility = sourceCompatibility = "1.8"
+
+minecraft {
+    version = "1.12.1"
+    mappings = "snapshot_20170624"
+    runDir = 'run'
+    tweakClass = 'me.dags.daflight.launch.DaFlightTweaker'
+}
+
+configurations {
+    shade
+    compile.extendsFrom(shade)
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    shade ('com.github.dags-:cfg-ui:0.1-SNAPSHOT') {
+        transitive = false
+    }
+}
+
+def shadeDependencies = {
+    configurations.shade.collect{
+        it.directory ? it : zipTree(it)
+    }.each {
+        from it
+    }
+}
+
+jar {
+    with shadeDependencies
+}
